@@ -1,16 +1,45 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+# Outils pour gérer les instances
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+import sys
+import networkx as nx
+import matplotlib.pyplot as plt
 
 
-# Press the green button in the gutter to run the script.
+def build_graph(file):
+    n, m, zero = file.readline().split()  # n nombre de noeuds, m nombre d'arrêtes
+    n = int(n)
+    m = int(m)
+    zero = int(zero)
+    graph = nx.Graph()
+
+    for i in range(int(n+1)):
+        graph.add_node(i)   # on ajoute tous les noeuds au graphe (en supposant que tous les noeuds soient numérotés de# 1 à n)
+
+    for line in file:
+        u, v, zero = line.split()
+        graph.add_edge(u, v)
+
+    return graph
+
+
+def draw_graph(graph):
+    nx.draw(graph)
+    plt.show()
+
+
+def main(file):
+    draw_graph(build_graph(file))
+
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    if len(sys.argv) >= 3:
+        print("Invalid number of arguments \n")
+        exit()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    try:
+        currentFile = open(sys.argv[1], "r")
+        main(currentFile)
+        currentFile.close()
+    except IOError:
+        print("The file does not exist, exiting", file=sys.stderr)
