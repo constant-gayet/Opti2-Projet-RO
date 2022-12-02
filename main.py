@@ -14,13 +14,12 @@ def build_graph(file):
     zero = int(zero)
     graph = nx.Graph()
 
-    for i in range(int(n+1)):
+    for i in range(1, int(n+1)):
         graph.add_node(i)   # on ajoute tous les noeuds au graphe (en supposant que tous les noeuds soient numérotés de# 1 à n)
 
     for line in file:
         u, v, zero = line.split()
-        graph.add_edge(u, v)
-
+        graph.add_edge(int(u), int(v))
     return graph
 
 
@@ -30,7 +29,9 @@ def draw_graph(graph):
 
 
 def main(file):
-    plnecp.define_problem(build_graph(file))
+    G = build_graph(file)
+    print("G : " , G)
+    plnecp.define_problem(G)
 
 if __name__ == '__main__':
     if len(sys.argv) >= 3:
