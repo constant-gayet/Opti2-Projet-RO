@@ -4,6 +4,7 @@
 import sys
 import networkx as nx
 import matplotlib.pyplot as plt
+import plnecp
 
 
 def build_graph(file):
@@ -29,8 +30,7 @@ def draw_graph(graph):
 
 
 def main(file):
-    draw_graph(build_graph(file))
-
+    plnecp.define_problem(build_graph(file))
 
 if __name__ == '__main__':
     if len(sys.argv) >= 3:
