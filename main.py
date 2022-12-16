@@ -30,7 +30,6 @@ def draw_graph(graph):
 
 def main(file):
     G = build_graph(file)
-    print("G : " , G)
     plnecp.define_problem(G)
 
 if __name__ == '__main__':
