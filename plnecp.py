@@ -3,14 +3,7 @@
 import pulp as pl
 import networkx as nx
 
-# Problem
-G = nx.Graph()
-G.add_node(1)
-G.add_node(2)
-G.add_node(3)
-G.add_edge(1, 2)
-G.add_edge(2, 3)
-G.add_edge(3, 1)
+
 
 # Configuring cplex
 path_to_cplex = "/opt/ibm/ILOG/CPLEX_Studio221/cplex/bin/x86-64_linux/cplex"
@@ -22,10 +15,12 @@ def define_problem(graph):
     problem = pl.LpProblem("CGI09", pl.LpMinimize)
     # ensemble de noeuds
     nodes = list(graph.nodes)
-    print("nodes : ",nodes)
+    print(nodes)
+    nodes_not_list = graph.nodes
+    print("nodes : ", nodes)
     source = nodes[source_index]
     print(source)
-    nodes_less_source = nodes  # ensemble des noeuds privés de la source
+    nodes_less_source = nodes.copy()  # ensemble des noeuds privés de la source
     nodes_less_source.pop(source)
     # ensemble d'aretes
     edges = list(graph.edges)
@@ -41,7 +36,9 @@ def define_problem(graph):
     print("x :", x)
     y = pl.LpVariable.dicts("y", nodes, cat=pl.LpBinary)
 
-    problem += pl.lpSum(y)  # on minimise la somme des y
+    print("y :", y)
+
+    problem += pl.lpSum(y), 'Total number of branchement nodes' # on minimise la somme des y
 
     # constraint 9
     for node in nodes_less_source:
@@ -58,8 +55,9 @@ def define_problem(graph):
         tmplist.append(v)
     for u in directed_graph.in_edges(source):
         tmplist2.append(u)
-    f_sv = pl.LpVariable.dicts("flows_sv", 0, len(nodes)-1, tmplist, cat=pl.LpInteger)
-    f_vs = pl.LpVariable.dicts("flows_vs", 0, len(nodes)-1, tmplist2, cat=pl.LpInteger)
+    f_sv = pl.LpVariable.dicts("flows_sv", tmplist, 0, len(nodes)-1, cat=pl.LpInteger)
+    f_vs = pl.LpVariable.dicts("flows_vs", tmplist2, 0, len(nodes)-1, cat=pl.LpInteger)
+
 
     problem += (pl.lpSum(f_sv) - pl.lpSum(f_vs)) == (directed_graph.number_of_nodes() - 1)
 
@@ -77,7 +75,7 @@ def define_problem(graph):
         problem += (pl.lpSum(f_vu) - pl.lpSum(f_uv)) == -1
 
     # constraint 12
-    f_uv_tot = pl.LpVariable.dicts("all_flows_", 0, len(nodes)-1, arcs, cat=pl.LpInteger)
+    f_uv_tot = pl.LpVariable.dicts("all_flows_", arcs, 0, len(nodes)-1, cat=pl.LpInteger)
     print(f_uv_tot)
     for arc in arcs:
         x_uv = x[arc]
@@ -86,7 +84,7 @@ def define_problem(graph):
         problem += (len(nodes) - 1 >= f_uv_tot[arc] >= 0)
 
     # constraint 13
-    for v in nodes:
+    for (index, v) in enumerate(nodes):
         tmplist = []
         tmplist2 = []
         for u in directed_graph.out_edges(v):
@@ -95,7 +93,6 @@ def define_problem(graph):
             tmplist2.append(u)
         x_vu = pl.LpVariable.dicts("x_vu", tmplist, cat=pl.LpBinary)
         x_uv = pl.LpVariable.dicts("x_uv", tmplist2, cat=pl.LpBinary)
-
-        problem += (pl.lpSum(x_vu) - pl.lpSum(x_uv)) <= (G.degree(v)) * y[v] + 2
+        problem += (pl.lpSum(x_vu) - pl.lpSum(x_uv)) <= int(graph.degree(v))* y[index+1]  + 2
 
     problem.solve(solver)

@@ -28,12 +28,14 @@ def draw_graph(graph):
     nx.draw(graph)
     plt.show()
 
+
 def main(file):
     G = build_graph(file)
     print("G : " , G)
     #plnecp.define_problem(G)
     PLNE_CPM.plne_cpm(G)
 
+    plnecp.define_problem(G)
 
 if __name__ == '__main__':
     if len(sys.argv) >= 3:
