@@ -100,6 +100,7 @@ def define_problem(graph):
         x_uv = pl.LpVariable.dicts(tmplist2, cat=pl.LpBinary)
         problem += (pl.lpSum(x_vu) + pl.lpSum(x_uv)) <= int(graph.degree(v)) * y[index+1] + 2
 
+
     varsdict = {}
     for v in problem.variables():
         varsdict[v.name] = v.varValue
