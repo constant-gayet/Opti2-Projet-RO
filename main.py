@@ -5,6 +5,7 @@ import sys
 import networkx as nx
 import matplotlib.pyplot as plt
 import plnecp
+import PLNE_CPM
 
 
 def build_graph(file):
@@ -30,6 +31,10 @@ def draw_graph(graph):
 
 def main(file):
     G = build_graph(file)
+    print("G : " , G)
+    #plnecp.define_problem(G)
+    PLNE_CPM.plne_cpm(G)
+
     plnecp.define_problem(G)
 
 if __name__ == '__main__':
