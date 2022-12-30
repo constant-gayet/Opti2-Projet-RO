@@ -6,6 +6,7 @@ import networkx as nx
 import matplotlib.pyplot as plt
 import plnecp
 
+
 def build_example_graph():
     G = nx.empty_graph()
     G.add_node(1)
@@ -14,8 +15,6 @@ def build_example_graph():
     G.add_node(4)
     G.add_node(5)
     G.add_node(6)
-    G.add_edge(1, 2)
-    G.add_edge(1, 4)
     G.add_edge(1, 5)
     G.add_edge(2, 4)
     G.add_edge(2, 5)
@@ -25,6 +24,7 @@ def build_example_graph():
     G.add_edge(5, 6)
     return G
 
+
 def build_graph(file):
     n, m, zero = file.readline().split()  # n nombre de noeuds, m nombre d'arrêtes
     n = int(n)
@@ -32,8 +32,9 @@ def build_graph(file):
     zero = int(zero)
     graph = nx.Graph()
 
-    for i in range(1, int(n+1)):
-        graph.add_node(i)   # on ajoute tous les noeuds au graphe (en supposant que tous les noeuds soient numérotés de# 1 à n)
+    for i in range(1, int(n + 1)):
+        graph.add_node(
+            i)  # on ajoute tous les noeuds au graphe (en supposant que tous les noeuds soient numérotés de# 1 à n)
 
     for line in file:
         u, v, zero = line.split()
@@ -41,18 +42,19 @@ def build_graph(file):
     return graph
 
 
-def draw_graph(graph):
-    nx.draw(graph)
+def draw_graph(title,graph):
+    nx.draw(graph, with_labels=True)
+    plt.title(title)
     plt.show()
 
 
 def main(file):
-    G = build_example_graph()
-    print("G : " , G)
+    # G = build_example_graph()
+    G = build_graph(file)
+    print("G : ", G)
     plnecp.define_problem(G)
+    # draw_graph("Graphe de base à 6 noeuds",G)
     # PLNE_CPM.plne_cpm(G)
-
-    # plnecp.define_problem(G)
 
 if __name__ == '__main__':
     if len(sys.argv) >= 3:
