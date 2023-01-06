@@ -53,7 +53,15 @@ def draw_graph(title,graph):
 
 def main(dir):
     # G = build_example_graph()
+
+    # On enlève les fichiers qui ont déjà été calculés
+    result_dir = './Results/plnecp/Spd_Inst_Rid_Final2_500-1000'
     fichiers = [join(dir,f) for f in listdir(dir) if isfile(join(dir, f))]
+    result_fichiers = [join(result_dir,f) for f in listdir(result_dir) if isfile(join(result_dir, f))]
+    for file in fichiers:
+        if file in result_fichiers:
+            fichiers.remove(file)
+
     print(fichiers)
     for file in fichiers:
         currentFile = open(file, "r")

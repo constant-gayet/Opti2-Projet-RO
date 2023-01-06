@@ -90,48 +90,105 @@ def plne_cp(graph,file):
 
     utils.result_in_txt(file, cover_tree)
 
-# requires Un graphe networkx
-# ensures Un arbre couvrant de poids minimum
-def heuristique(G):
-    # Problème de minimisation
-    prob = pl.LpProblem('heuristique', pl.LpMinimize)
 
-    # Variables utiles au problème
-    E = list(G.edges)  # E_G : ensemble des arêtes de G
-    V = list(G.nodes)  # V_G : ensemble des sommets de G
+def weight_heuristic(graph):
+    # Création de l'arbre de recouvrement vide
+    cover_tree = nx.Graph()
 
-    Gd = G.to_directed()  # G' : Version orienté du graphe G
-    Ep = list(Gd.edges)  # E'_G : ensemble des arcs de G'
+    # Ajout des poids 1 à toutes les arêtes du graphe
+    for u, v in graph.edges():
+        graph[u][v]['weight'] = 1
 
-    # listes utilisées pour stocker les éléments des contraintes
-    elist = []
+    # Répéter jusqu'à ce que l'arbre de recouvrement ait |VG| - 1 arêtes
+    while cover_tree.number_of_edges() < graph.number_of_nodes() - 1:
+        # Sélection de l'arête {u*, v*} ayant le poids minimum
+        min_edge = min(graph.edges(data=True), key=lambda x: x[2]['weight'])
+        u, v, _ = min_edge
 
-    # Variables du problème
-    lyv = pl.LpVariable.dicts("y", V, cat=pl.LpBinary)  # Contrainte 24
-    lxuv = pl.LpVariable.dicts("x", Ep, cat=pl.LpBinary)  # Contrainte 25
+        # Si u* et v* sont dans deux composantes connexes différentes, ajouter l'arête à l'arbre de recouvrement
+        if nx.node_connected_component(cover_tree, u) != nx.node_connected_component(cover_tree, v):
+            cover_tree.add_edge(u, v)
+            # Supprimer l'arête du graphe
+            graph.remove_edge(u, v)
+            # Incrémenter le poids des arêtes incidentes à u* et v* de 1
+            for w in graph[u]:
+                graph[u][w]['weight'] += 1
+            for w in graph[v]:
+                graph[v][w]['weight'] += 1
 
-    # Objectif
-    prob += pl.lpSum(lyv)  # Contrainte 17
+    return cover_tree
 
-    # Contraintes pour l'heuristique
-    lx = pl.LpVariable.dicts("xh", E, cat=pl.LpBinary)
-    # 1 - Récupérer toutes les bases de cycles de G
-    cycles = nx.cycle_basis(G)
-    # 2 - PL en cassant les bases de cycles
-    prob += pl.lpSum(lx) == G.number_of_nodes() - 1
-    for c in cycles:
-        for (i,j) in zip(c[:-1],c[1:]):
-            if lxuv[(i,j)] not in elist :
-                elist.append(lxuv[(i,j)])
-        prob += pl.lpSum(pl.LpVariable.dicts("xij_in_C", elist)) <= sum(1 for cycle in c) - 1
-        elist = []
-        # 3 - Calculer le nombre de composantes connexes (CC)
-        CC = nx.connected_components(G)
-        nb_CC = sum(1 for cc in CC)
-        # 4 -
-        if nb_CC == 1:  # Si nb_CC = 1 on a un Arbre
-            # print(prob)
-            prob.solve(solver)
-        else:  # Sinon ajouter toutes les arêtes de G entre les composantes connexes
-            for (i,j) in V:
-                print("LOL")
+# Exemple d'utilisation de l'heuristique
+graph = nx.Graph()
+graph.add_edges_from([(1, 2), (1, 3), (2, 4), (3, 4)])
+cover_tree = weight_heuristic(graph)
+print(cover_tree.edges)  # affiche [(1, 3), (3, 4)]
+
+def color_heuristic(graph):
+    # Création de l'arbre de recouvrement vide
+    cover_tree = nx.Graph()
+
+    # Attribution de la couleur verte à chaque sommet
+    for node in graph.nodes():
+        graph.nodes[node]['color'] = 'V'
+
+    # Répéter jusqu'à ce que l'arbre de recouvrement ait |VG| - 1 arêtes
+    while cover_tree.number_of_edges() < graph.number_of_nodes() - 1:
+        # Sélection de l'arête ayant le moins de sommets jaunes et bleus comme extrémités
+        min_edge = min(graph.edges(data=True), key=lambda x: (graph.nodes[x[0]]['color'] == 'J' or graph.nodes[x[1]]['color'] == 'J', graph.nodes[x[0]]['color'] == 'B' or graph.nodes[x[1]]['color'] == 'B'))
+        u, v, _ = min_edge
+        cover_tree.add_edge(u, v)
+        # Supprimer l'arête du graphe
+        graph.remove_edge(u, v)
+        # Mise à jour des couleurs des sommets
+        for node in (u, v):
+            if graph.degree[node] == 1:
+                graph.nodes[node]['color'] = 'B'
+            elif graph.degree[node] == 2:
+                graph.nodes[node]['color'] = 'J'
+            else:
+                graph.nodes[node]['color'] = 'R'
+
+    return cover_tree
+
+# Exemple d'utilisation de l'heuristique
+graph = nx.Graph()
+graph.add_edges_from([(1, 2), (1, 3), (2, 3)])
+cover_tree = color_heuristic(graph)
+print(cover_tree.edges)  # affiche [(1, 2)]
+
+import networkx as nx
+
+def color_weight_heuristic(graph):
+    # Création de l'arbre de recouvrement vide
+    cover_tree = nx.Graph()
+
+    # Attribution de la couleur verte et du poids 1 à chaque sommet
+    for node in graph.nodes():
+        graph.nodes[node]['color'] = 'V'
+        graph.nodes[node]['weight'] = 1
+
+    # Répéter jusqu'à ce que l'arbre de recouvrement ait |VG| - 1 arêtes
+    while cover_tree.number_of_edges() < graph.number_of_nodes() - 1:
+        # Sélection de l'arête ayant le poids minimum et le moins de sommets jaunes et bleus comme extrémités
+        min_edge = min(graph.edges(data=True), key=lambda x: (x[2]['weight'], graph.nodes[x[0]]['color'] == 'J' or graph.nodes[x[1]]['color'] == 'J', graph.nodes[x[0]]['color'] == 'B' or graph.nodes[x[1]]['color'] == 'B'))
+        u, v, _ = min_edge
+        cover_tree.add_edge(u, v)
+        # Supprimer l'arête du graphe
+        graph.remove_edge(u, v)
+        # Mise à jour des couleurs et poids des sommets
+        for node in (u, v):
+            graph.nodes[node]['weight'] += 1
+            if graph.degree[node] == 1:
+                graph.nodes[node]['color'] = 'B'
+            elif graph.degree[node] == 2:
+                graph.nodes[node]['color'] = 'J'
+            else:
+                graph.nodes[node]['color'] = 'R'
+
+    return cover_tree
+
+# Exemple d'utilisation de l'heuristique
+graph = nx.Graph()
+graph.add_edges_from([(1, 2), (1, 3), (2, 3)])
+cover
