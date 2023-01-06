@@ -1,0 +1,10 @@
+
+Log for '/tmp/0d0eec1342354bf3aba40201c50c51d0-pulp.lp' Clone_2 (V22.1.0.0) Thu Jan  5 11:26:36 2023
+
+Tried aggregator 1 time.
+LP Presolve eliminated 1518 rows and 3464 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (1.01 ticks)
+
+Dual simplex solved model.
+

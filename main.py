@@ -4,6 +4,8 @@
 import sys
 import networkx as nx
 import matplotlib.pyplot as plt
+
+import plnecpm
 import plnecp
 
 
@@ -52,9 +54,12 @@ def main(file):
     # G = build_example_graph()
     G = build_graph(file)
     print("G : ", G)
-    plnecp.define_problem(G)
+    plnecp.plne_cp(G)
+
+
+    #plnecp.heuristique(G)
     # draw_graph("Graphe de base à 6 noeuds",G)
-    # PLNE_CPM.plne_cpm(G)
+    #plne_cpm.plne_cpm(G)
 
 if __name__ == '__main__':
     if len(sys.argv) >= 3:
