@@ -65,14 +65,15 @@ def plne_cpm(G):
     model.solve(solver=solver)
 
     # Affichage du résultat
-    print(f"Statut de la solution: {pulp.LpStatus[model.status]}")
-    for v in V:
-        print(f"y_{v} = {y[v].value()}")
-    for u,v in Ep:
-        print(f"x_{u}_{v} = {x[u,v].value()}")
-    for u,v in Ep:
-        for k in V:
-            print(f"f_{u}_{v}_{k} = {f[u,v,k].value()}")
+    # print(f"Statut de la solution: {pulp.LpStatus[model.status]}")
+    # for v in V:
+    #     print(f"y_{v} = {y[v].value()}")
+    # for u,v in Ep:
+    #     print(f"x_{u}_{v} = {x[u,v].value()}")
+    # for u,v in Ep:
+    #     for k in V:
+    #         print(f"f_{u}_{v}_{k} = {f[u,v,k].value()}")
+    return model
 
 
 plne_cpm(G)
