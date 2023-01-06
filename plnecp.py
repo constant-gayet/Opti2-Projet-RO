@@ -1,4 +1,5 @@
 # Formulation en programme linéaire en nombres entiers basée sur le concept de flot (PLNE-CP) [CGI09]
+import os.path
 from shlex import join
 
 import pulp as pl
@@ -6,13 +7,14 @@ import networkx as nx
 from ast import literal_eval as make_tuple
 
 import main
+import utils
 
 # Configuring cplex
 path_to_cplex = "/opt/ibm/ILOG/CPLEX_Studio221/cplex/bin/x86-64_linux/cplex"
 solver = pl.CPLEX(path=path_to_cplex)
 
 
-def plne_cp(graph):
+def plne_cp(graph,file):
     source_index = 1
     problem = pl.LpProblem("CGI09", pl.LpMinimize)
     # ensemble de noeuds
@@ -79,14 +81,14 @@ def plne_cp(graph):
             res =v.name.split('_')
             result.append(res[-2] + res[-1])
 
+    print("sorted result", sorted(result, key=lambda x: make_tuple(x)[0]))
     cover_tree_edges = map(lambda x: make_tuple(x), result)
-    print("result", result)
-
     cover_tree.add_edges_from(cover_tree_edges)
-    print(cover_tree.nodes)
-    # main.draw_graph('Cover tree',cover_tree)
-    # print("varsdict : ", varsdict)
+    print("cover tree nodes",cover_tree.nodes)
+    print("cover tree edges",cover_tree.edges)
+    print(file)
 
+    utils.result_in_txt(file, cover_tree)
 
 # requires Un graphe networkx
 # ensures Un arbre couvrant de poids minimum

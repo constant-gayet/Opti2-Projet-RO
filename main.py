@@ -4,8 +4,9 @@
 import sys
 import networkx as nx
 import matplotlib.pyplot as plt
-
-import plnecpm
+from os import listdir
+from os.path import isfile, join
+# import plnecpm
 import plnecp
 
 
@@ -50,11 +51,16 @@ def draw_graph(title,graph):
     plt.show()
 
 
-def main(file):
+def main(dir):
     # G = build_example_graph()
-    G = build_graph(file)
-    print("G : ", G)
-    plnecp.plne_cp(G)
+    fichiers = [join(dir,f) for f in listdir(dir) if isfile(join(dir, f))]
+    print(fichiers)
+    for file in fichiers:
+        currentFile = open(file, "r")
+        G = build_graph(currentFile)
+        currentFile.close()
+        # print("G : ", G)
+        plnecp.plne_cp(G,file)
 
 
     #plnecp.heuristique(G)
@@ -67,8 +73,6 @@ if __name__ == '__main__':
         exit()
 
     try:
-        currentFile = open(sys.argv[1], "r")
-        main(currentFile)
-        currentFile.close()
+        main(sys.argv[1])
     except IOError:
         print("The file does not exist, exiting", file=sys.stderr)
