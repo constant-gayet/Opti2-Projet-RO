@@ -58,7 +58,7 @@ def plne_cpm(G):
         for k in V:
             model += f[u,v,k] <= x[u,v]
     for v in V:
-        model += sum(x[v,u] for v,u in Gp.out_edges(v)) + sum(x[u,v] for u,v in Gp.in_edges(v)) - 2 == G.degree(v)*y[v]
+        model += sum(x[v,u] for v,u in Gp.out_edges(v)) + sum(x[u,v] for u,v in Gp.in_edges(v)) - 2 <= G.degree(v)*y[v]
 
     # Résolution du modèle
     model.writeLP("./plnecpm.pl")

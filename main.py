@@ -59,7 +59,7 @@ def main(file):
 
     #plnecp.heuristique(G)
     # draw_graph("Graphe de base à 6 noeuds",G)
-    #plne_cpm.plne_cpm(G)
+    plnecpm.plne_cpm(G)
 
 if __name__ == '__main__':
     if len(sys.argv) >= 3:
