@@ -6,7 +6,7 @@ import networkx as nx
 import matplotlib.pyplot as plt
 from os import listdir
 from os.path import isfile, join
-# import plnecpm
+import plnecpm
 import plnecp
 
 
@@ -60,12 +60,12 @@ def main(dir):
         G = build_graph(currentFile)
         currentFile.close()
         # print("G : ", G)
-        plnecp.plne_cp(G,file)
+        # plnecp.plne_cp(G,file)
+        plnecpm.plne_cpm(G)
 
 
     #plnecp.heuristique(G)
     # draw_graph("Graphe de base à 6 noeuds",G)
-    plnecpm.plne_cpm(G)
 
 if __name__ == '__main__':
     if len(sys.argv) >= 3:
