@@ -61,7 +61,7 @@ def main(dir):
         currentFile.close()
         # print("G : ", G)
         # plnecp.plne_cp(G,file)
-        plnecpm.plne_cpm(G)
+        plnecpm.plne_cpm(G,file)
 
 
     #plnecp.heuristique(G)

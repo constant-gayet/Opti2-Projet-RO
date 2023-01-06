@@ -1,13 +1,15 @@
 import pulp
 import networkx as nx
 from random import choice
+import utils
+from ast import literal_eval as make_tuple
 
 path_to_cplex = "/opt/ibm/ILOG/CPLEX_Studio221/cplex/bin/x86-64_linux/cplex"
 solver = pulp.CPLEX(path=path_to_cplex)
 
 # requires Un graphe networkx
 # ensures Un arbre couvrant de poids minimum
-def plne_cpm(G):
+def plne_cpm(G,file):
     # Variables nécessaires au programme
     V = list(G.nodes)  # V_G : ensemble des sommets de G
     Gp = G.to_directed()  # G' : Version orienté du graphe G
@@ -56,4 +58,23 @@ def plne_cpm(G):
     # for u,v in Ep:
     #     for k in V:
     #         print(f"f_{u}_{v}_{k} = {f[u,v,k].value()}")
+    varsdict = {}
+    result = []
+    cover_tree = nx.Graph()
+    for v in model.variables():
+        varsdict[v.name] = v.varValue
+        if v.name[0] == "x" and v.varValue != 0:
+            res = v.name.split('_')
+            result.append(res[-2] + res[-1])
+
+    print("sorted result", sorted(result, key=lambda x: make_tuple(x)[0]))
+    cover_tree_edges = map(lambda x: make_tuple(x), result)
+    cover_tree.add_edges_from(cover_tree_edges)
+    print("cover tree nodes", cover_tree.nodes)
+    print("cover tree edges", cover_tree.edges)
+    print(file)
+
+
+    utils.result_in_txt_plnecpm(file,cover_tree)
+
     return model

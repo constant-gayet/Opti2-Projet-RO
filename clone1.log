@@ -167,3 +167,60 @@ Dual simplex solved model.
 
 Log for '/tmp/537e2577fbe1462ba216fa2128cb5804-pulp.lp' Clone_1 (V22.1.0.0) Fri Jan  6 10:46:28 2023
 
+
+Log for '/tmp/0e1024d335694a9a853df92271c43fca-pulp.lp' Clone_1 (V22.1.0.0) Fri Jan  6 10:49:37 2023
+
+Tried aggregator 1 time.
+LP Presolve eliminated 129198 rows and 89444 columns.
+All rows and columns eliminated.
+Presolve time = 0.04 sec. (51.53 ticks)
+Parallel mode: deterministic, using up to 6 threads for concurrent optimization:
+ * Starting dual Simplex on 1 thread...
+ * Starting primal Simplex on 1 thread...
+
+Log for '/tmp/0e1024d335694a9a853df92271c43fca-pulp.lp' Clone_1 (V22.1.0.0) Fri Jan  6 10:49:37 2023
+
+Using steepest-edge.
+
+Total time on 6 threads = 0.13 sec. (316.21 ticks)
+
+Dual simplex solved model.
+
+
+Log for '/tmp/94fbb4ff6695491fbbe717020f47be85-pulp.lp' Clone_1 (V22.1.0.0) Fri Jan  6 10:54:13 2023
+
+Tried aggregator 1 time.
+LP Presolve eliminated 129198 rows and 89444 columns.
+All rows and columns eliminated.
+Presolve time = 0.05 sec. (51.53 ticks)
+Parallel mode: deterministic, using up to 6 threads for concurrent optimization:
+ * Starting dual Simplex on 1 thread...
+ * Starting primal Simplex on 1 thread...
+
+Log for '/tmp/94fbb4ff6695491fbbe717020f47be85-pulp.lp' Clone_1 (V22.1.0.0) Fri Jan  6 10:54:13 2023
+
+Using steepest-edge.
+
+Total time on 6 threads = 0.15 sec. (316.20 ticks)
+
+Dual simplex solved model.
+
+
+Log for '/tmp/a499e43a9d44474cad318e4cf9340ad4-pulp.lp' Clone_1 (V22.1.0.0) Fri Jan  6 11:25:32 2023
+
+Tried aggregator 1 time.
+LP Presolve eliminated 575998 rows and 416638 columns.
+All rows and columns eliminated.
+Presolve time = 0.35 sec. (237.65 ticks)
+Parallel mode: deterministic, using up to 6 threads for concurrent optimization:
+ * Starting dual Simplex on 1 thread...
+ * Starting primal Simplex on 1 thread...
+
+Log for '/tmp/a499e43a9d44474cad318e4cf9340ad4-pulp.lp' Clone_1 (V22.1.0.0) Fri Jan  6 11:25:33 2023
+
+Using steepest-edge.
+
+Total time on 6 threads = 0.83 sec. (762.63 ticks)
+
+Dual simplex solved model.
+
