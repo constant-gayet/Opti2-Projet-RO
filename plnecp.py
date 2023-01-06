@@ -12,8 +12,7 @@ path_to_cplex = "/opt/ibm/ILOG/CPLEX_Studio221/cplex/bin/x86-64_linux/cplex"
 solver = pl.CPLEX(path=path_to_cplex)
 
 
-def define_problem(graph):
-
+def plne_cp(graph):
     source_index = 1
     problem = pl.LpProblem("CGI09", pl.LpMinimize)
     # ensemble de noeuds
@@ -87,3 +86,50 @@ def define_problem(graph):
     print(cover_tree.nodes)
     # main.draw_graph('Cover tree',cover_tree)
     # print("varsdict : ", varsdict)
+
+
+# requires Un graphe networkx
+# ensures Un arbre couvrant de poids minimum
+def heuristique(G):
+    # Problème de minimisation
+    prob = pl.LpProblem('heuristique', pl.LpMinimize)
+
+    # Variables utiles au problème
+    E = list(G.edges)  # E_G : ensemble des arêtes de G
+    V = list(G.nodes)  # V_G : ensemble des sommets de G
+
+    Gd = G.to_directed()  # G' : Version orienté du graphe G
+    Ep = list(Gd.edges)  # E'_G : ensemble des arcs de G'
+
+    # listes utilisées pour stocker les éléments des contraintes
+    elist = []
+
+    # Variables du problème
+    lyv = pl.LpVariable.dicts("y", V, cat=pl.LpBinary)  # Contrainte 24
+    lxuv = pl.LpVariable.dicts("x", Ep, cat=pl.LpBinary)  # Contrainte 25
+
+    # Objectif
+    prob += pl.lpSum(lyv)  # Contrainte 17
+
+    # Contraintes pour l'heuristique
+    lx = pl.LpVariable.dicts("xh", E, cat=pl.LpBinary)
+    # 1 - Récupérer toutes les bases de cycles de G
+    cycles = nx.cycle_basis(G)
+    # 2 - PL en cassant les bases de cycles
+    prob += pl.lpSum(lx) == G.number_of_nodes() - 1
+    for c in cycles:
+        for (i,j) in zip(c[:-1],c[1:]):
+            if lxuv[(i,j)] not in elist :
+                elist.append(lxuv[(i,j)])
+        prob += pl.lpSum(pl.LpVariable.dicts("xij_in_C", elist)) <= sum(1 for cycle in c) - 1
+        elist = []
+        # 3 - Calculer le nombre de composantes connexes (CC)
+        CC = nx.connected_components(G)
+        nb_CC = sum(1 for cc in CC)
+        # 4 -
+        if nb_CC == 1:  # Si nb_CC = 1 on a un Arbre
+            # print(prob)
+            prob.solve(solver)
+        else:  # Sinon ajouter toutes les arêtes de G entre les composantes connexes
+            for (i,j) in V:
+                print("LOL")
