@@ -5,30 +5,13 @@ from random import choice
 path_to_cplex = "/opt/ibm/ILOG/CPLEX_Studio221/cplex/bin/x86-64_linux/cplex"
 solver = pulp.CPLEX(path=path_to_cplex)
 
-G = nx.empty_graph()
-G.add_node(1)
-G.add_node(2)
-G.add_node(3)
-G.add_node(4)
-G.add_node(5)
-G.add_node(6)
-G.add_edge(1,2)
-G.add_edge(1,4)
-G.add_edge(1,5)
-G.add_edge(2,4)
-G.add_edge(2,5)
-G.add_edge(3,5)
-G.add_edge(3,6)
-G.add_edge(4,5)
-G.add_edge(5,6)
-
 # requires Un graphe networkx
 # ensures Un arbre couvrant de poids minimum
 def plne_cpm(G):
     # Variables nécessaires au programme
     V = list(G.nodes)  # V_G : ensemble des sommets de G
     Gp = G.to_directed()  # G' : Version orienté du graphe G
-    Ep = list(G.to_directed().edges)  # E'_G : ensemble des arcs de G'
+    Ep = list(Gp.edges)  # E'_G : ensemble des arcs de G'
     s = choice(V)
 
     # Création du modèle de programmation linéaire
@@ -74,6 +57,3 @@ def plne_cpm(G):
     #     for k in V:
     #         print(f"f_{u}_{v}_{k} = {f[u,v,k].value()}")
     return model
-
-
-plne_cpm(G)
