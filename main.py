@@ -5,6 +5,8 @@ import networkx as nx
 import matplotlib.pyplot as plt
 from os import listdir
 from os.path import isfile, join
+
+import heuristiques
 import plnecpm
 import plnecp
 
@@ -100,28 +102,17 @@ def main_plnecp(dir):
 def main_heuristiques(dir):
     # G = build_example_graph()
 
-    fichiers = [join(dir,f[8) for f in listdir(dir) if isfile(join(dir, f))]
+    fichiers = [join("Instances/Instances/Spd_Inst_Rid_Final2/",f[7:]) for f in listdir(dir) if isfile(join(dir, f))]
     # On enlève les fichiers qui ont déjà été calculés
-    if not os.path.exists('./Results/heuristiques/color_weight/Spd_Inst_Rid_Final2_0-500'):
-        os.makedirs('./Results/heuristiques/color_weight/Spd_Inst_Rid_Final2_0-500')
-    result_dir = './Results/heuristiques/color_weight/Spd_Inst_Rid_Final2_0-500'
-    result_fichiers = [join(result_dir,f) for f in listdir(result_dir) if isfile(join(result_dir, f))]
-    for file in fichiers:
-        if file in result_fichiers:
-            fichiers.remove(file)
+    if not os.path.exists('Results/heuristiques/color/Spd_Inst_Rid_Final2_0-500'):
+        os.makedirs('Results/heuristiques/color/Spd_Inst_Rid_Final2_0-500')
 
     print(fichiers)
     for file in fichiers:
         currentFile = open(file, "r")
         G = build_graph(currentFile)
         currentFile.close()
-        # print("G : ", G)
-        plnecp.plne_cp(G,file)
-        # plnecpm.plne_cpm(G,file)
-
-
-    #plnecp.heuristique(G)
-    # draw_graph("Graphe de base à 6 noeuds",G)
+        heuristiques.color_weight_heuristic(G,file)
 
 if __name__ == '__main__':
     if len(sys.argv) >= 3:
@@ -129,6 +120,6 @@ if __name__ == '__main__':
         exit()
 
     try:
-        main_plnecp(sys.argv[1])
+        main_heuristiques(sys.argv[1])
     except IOError:
         print("The file does not exist, exiting", file=sys.stderr)
