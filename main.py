@@ -104,15 +104,15 @@ def main_heuristiques(dir):
 
     fichiers = [join("Instances/Instances/Spd_Inst_Rid_Final2/",f[7:]) for f in listdir(dir) if isfile(join(dir, f))]
     # On enlève les fichiers qui ont déjà été calculés
-    if not os.path.exists('Results/heuristiques/color/Spd_Inst_Rid_Final2_0-500'):
-        os.makedirs('Results/heuristiques/color/Spd_Inst_Rid_Final2_0-500')
+    if not os.path.exists('Results/heuristiques/color/Spd_Inst_Rid_Final2_500-1000'):
+        os.makedirs('Results/heuristiques/color/Spd_Inst_Rid_Final2_500-1000')
 
     print(fichiers)
     for file in fichiers:
         currentFile = open(file, "r")
         G = build_graph(currentFile)
         currentFile.close()
-        heuristiques.color_weight_heuristic(G,file)
+        heuristiques.color_heuristic(G,file)
 
 if __name__ == '__main__':
     if len(sys.argv) >= 3:

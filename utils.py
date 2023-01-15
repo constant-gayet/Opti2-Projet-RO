@@ -25,9 +25,9 @@ def result_in_txt_plnecpm(file, cover_tree):
     file.close()
 
 def result_in_txt_heuristiques(file, cover_tree):
-    filepath = os.path.join('Results/heuristiques/color/Spd_Inst_Rid_Final2_0-500', "result_" + os.path.basename(file))
-    if not os.path.exists('Results/heuristiques/color/Spd_Inst_Rid_Final2_0-500'):
-        os.makedirs('Results/heuristiques/color/Spd_Inst_Rid_Final2_0-500')
+    filepath = os.path.join('Results/heuristiques/color/Spd_Inst_Rid_Final2_500-1000', "result_" + os.path.basename(file))
+    if not os.path.exists('Results/heuristiques/color/Spd_Inst_Rid_Final2_500-1000'):
+        os.makedirs('Results/heuristiques/color/Spd_Inst_Rid_Final2_500-1000')
     file = open(filepath, "w+")
     file.write(f"{len(cover_tree.nodes)} {len(cover_tree.edges)} 0\n")
     for edge in cover_tree.edges:
