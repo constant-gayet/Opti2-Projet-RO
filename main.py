@@ -51,12 +51,35 @@ def draw_graph(title,graph):
     plt.show()
 
 
-def main(dir):
+def main_plnecpm(dir):
     # G = build_example_graph()
 
-    # On enlève les fichiers qui ont déjà été calculés
-    result_dir = './Results/plnecp/Spd_Inst_Rid_Final2_500-1000'
     fichiers = [join(dir,f) for f in listdir(dir) if isfile(join(dir, f))]
+    # On enlève les fichiers qui ont déjà été calculés
+    # result_dir = './Results/plnecp/Spd_Inst_Rid_Final2_0_500'
+    # result_fichiers = [join(result_dir,f) for f in listdir(result_dir) if isfile(join(result_dir, f))]
+    # for file in fichiers:
+    #     if file in result_fichiers:
+    #         fichiers.remove(file)
+
+    print(fichiers)
+    for file in fichiers:
+        currentFile = open(file, "r")
+        G = build_graph(currentFile)
+        currentFile.close()
+        # print("G : ", G)
+        plnecp.plne_cp(G,file)
+        # plnecpm.plne_cpm(G,file)
+
+
+    #plnecp.heuristique(G)
+    # draw_graph("Graphe de base à 6 noeuds",G)
+def main_plnecp(dir):
+    # G = build_example_graph()
+
+    fichiers = [join(dir,f) for f in listdir(dir) if isfile(join(dir, f))]
+    # On enlève les fichiers qui ont déjà été calculés
+    result_dir = './Results/plnecp/Spd_Inst_Rid_Final2_0_500'
     result_fichiers = [join(result_dir,f) for f in listdir(result_dir) if isfile(join(result_dir, f))]
     for file in fichiers:
         if file in result_fichiers:
@@ -68,8 +91,8 @@ def main(dir):
         G = build_graph(currentFile)
         currentFile.close()
         # print("G : ", G)
-        # plnecp.plne_cp(G,file)
-        plnecpm.plne_cpm(G,file)
+        plnecp.plne_cp(G,file)
+        # plnecpm.plne_cpm(G,file)
 
 
     #plnecp.heuristique(G)
@@ -81,6 +104,6 @@ if __name__ == '__main__':
         exit()
 
     try:
-        main(sys.argv[1])
+        main_plnecp(sys.argv[1])
     except IOError:
         print("The file does not exist, exiting", file=sys.stderr)

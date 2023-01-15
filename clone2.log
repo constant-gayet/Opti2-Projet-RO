@@ -134,3 +134,13 @@ Presolve time = 0.30 sec. (225.73 ticks)
 
 Dual simplex solved model.
 
+
+Log for '/tmp/1f9679665d6149a8bf9c09517e280fb3-pulp.lp' Clone_2 (V22.1.0.0) Sun Jan 15 13:17:08 2023
+
+Tried aggregator 1 time.
+LP Presolve eliminated 129198 rows and 89444 columns.
+All rows and columns eliminated.
+Presolve time = 0.04 sec. (48.89 ticks)
+
+Dual simplex solved model.
+

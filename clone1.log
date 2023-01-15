@@ -224,3 +224,22 @@ Total time on 6 threads = 0.83 sec. (762.63 ticks)
 
 Dual simplex solved model.
 
+
+Log for '/tmp/1f9679665d6149a8bf9c09517e280fb3-pulp.lp' Clone_1 (V22.1.0.0) Sun Jan 15 13:17:08 2023
+
+Tried aggregator 1 time.
+LP Presolve eliminated 129198 rows and 89444 columns.
+All rows and columns eliminated.
+Presolve time = 0.06 sec. (51.53 ticks)
+Parallel mode: deterministic, using up to 6 threads for concurrent optimization:
+ * Starting dual Simplex on 1 thread...
+ * Starting primal Simplex on 1 thread...
+
+Log for '/tmp/1f9679665d6149a8bf9c09517e280fb3-pulp.lp' Clone_1 (V22.1.0.0) Sun Jan 15 13:17:08 2023
+
+Using steepest-edge.
+
+Total time on 6 threads = 0.15 sec. (316.19 ticks)
+
+Dual simplex solved model.
+
