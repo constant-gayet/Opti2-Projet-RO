@@ -79,7 +79,6 @@ def main_plnecpm(dir):
     # draw_graph("Graphe de base à 6 noeuds",G)
 def main_plnecp(dir):
     # G = build_example_graph()
-
     fichiers = [join(dir,f) for f in listdir(dir) if isfile(join(dir, f))]
     # On enlève les fichiers qui ont déjà été calculés
     if not os.path.exists('./Results/plnecp/Spd_Inst_Rid_Final2_0-500'):
@@ -102,7 +101,7 @@ def main_plnecp(dir):
 def main_heuristiques(dir):
     # G = build_example_graph()
 
-    fichiers = [join("Instances/Instances/Spd_Inst_Rid_Final2/",f[7:]) for f in listdir(dir) if isfile(join(dir, f))]
+    fichiers = [join(dir,f) for f in listdir(dir) if isfile(join(dir, f))]
     # On enlève les fichiers qui ont déjà été calculés
     if not os.path.exists('Results/heuristiques/color/Spd_Inst_Rid_Final2_500-1000'):
         os.makedirs('Results/heuristiques/color/Spd_Inst_Rid_Final2_500-1000')
@@ -114,12 +113,19 @@ def main_heuristiques(dir):
         currentFile.close()
         heuristiques.color_heuristic(G,file)
 
+def main_aux(dir):
+    filepath = "Results/heuristiques/color/Spd_Inst_Rid_Final2_0-500/result_Spd_RF2_40_50_619.txt"
+    file = open(filepath,"r")
+    G = build_graph(file)
+    file.close()
+    draw_graph("Graph",G)
+
 if __name__ == '__main__':
     if len(sys.argv) >= 3:
         print("Invalid number of arguments \n")
         exit()
 
     try:
-        main_heuristiques(sys.argv[1])
+        main_aux(sys.argv[1])
     except IOError:
         print("The file does not exist, exiting", file=sys.stderr)
