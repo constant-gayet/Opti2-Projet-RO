@@ -79,7 +79,7 @@ def main_plnecp(dir):
 
     fichiers = [join(dir,f) for f in listdir(dir) if isfile(join(dir, f))]
     # On enlève les fichiers qui ont déjà été calculés
-    result_dir = './Results/plnecp/Spd_Inst_Rid_Final2_0_500'
+    result_dir = './Results/plnecp/Spd_Inst_Rid_Final2_0-500'
     result_fichiers = [join(result_dir,f) for f in listdir(result_dir) if isfile(join(result_dir, f))]
     for file in fichiers:
         if file in result_fichiers:
