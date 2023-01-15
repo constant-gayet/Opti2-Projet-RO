@@ -1,6 +1,5 @@
 # Outils pour gérer les instances
-
-
+import os
 import sys
 import networkx as nx
 import matplotlib.pyplot as plt
@@ -56,11 +55,13 @@ def main_plnecpm(dir):
 
     fichiers = [join(dir,f) for f in listdir(dir) if isfile(join(dir, f))]
     # On enlève les fichiers qui ont déjà été calculés
-    # result_dir = './Results/plnecp/Spd_Inst_Rid_Final2_0_500'
-    # result_fichiers = [join(result_dir,f) for f in listdir(result_dir) if isfile(join(result_dir, f))]
-    # for file in fichiers:
-    #     if file in result_fichiers:
-    #         fichiers.remove(file)
+    if not os.path.exists('./Results/plnecpm/Spd_Inst_Rid_Final2_0-500'):
+        os.makedirs('./Results/plnecpm/Spd_Inst_Rid_Final2_0-500')
+    result_dir = './Results/plnecpm/Spd_Inst_Rid_Final2_0-500'
+    result_fichiers = [join(result_dir, f) for f in listdir(result_dir) if isfile(join(result_dir, f))]
+    for file in fichiers:
+        if file in result_fichiers:
+            fichiers.remove(file)
 
     print(fichiers)
     for file in fichiers:
@@ -68,8 +69,8 @@ def main_plnecpm(dir):
         G = build_graph(currentFile)
         currentFile.close()
         # print("G : ", G)
-        plnecp.plne_cp(G,file)
-        # plnecpm.plne_cpm(G,file)
+        # plnecp.plne_cp(G,file)
+        plnecpm.plne_cpm(G,file)
 
 
     #plnecp.heuristique(G)
@@ -79,6 +80,8 @@ def main_plnecp(dir):
 
     fichiers = [join(dir,f) for f in listdir(dir) if isfile(join(dir, f))]
     # On enlève les fichiers qui ont déjà été calculés
+    if not os.path.exists('./Results/plnecp/Spd_Inst_Rid_Final2_0-500'):
+        os.makedirs('./Results/plnecp/Spd_Inst_Rid_Final2_0-500')
     result_dir = './Results/plnecp/Spd_Inst_Rid_Final2_0-500'
     result_fichiers = [join(result_dir,f) for f in listdir(result_dir) if isfile(join(result_dir, f))]
     for file in fichiers:

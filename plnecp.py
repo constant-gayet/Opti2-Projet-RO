@@ -88,6 +88,6 @@ def plne_cp(graph,file):
     print("cover tree edges",cover_tree.edges)
     print(file)
 
-    utils.result_in_txt(file, cover_tree)
+    utils.result_in_txt_plnecp(file, cover_tree)
 
 
