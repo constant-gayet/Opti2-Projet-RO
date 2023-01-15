@@ -659,3 +659,203 @@ Log for '/tmp/2903a1a93e114bb6965ef585e73beb8a-pulp.lp' Clone_1 (V22.1.0.0) Sun 
 
 Log for '/tmp/91d9dcf5e50c4e26b58a6f35f3f7dffd-pulp.lp' Clone_1 (V22.1.0.0) Sun Jan 15 16:46:26 2023
 
+
+Log for '/tmp/91d9dcf5e50c4e26b58a6f35f3f7dffd-pulp.lp' Clone_1 (V22.1.0.0) Sun Jan 15 16:52:07 2023
+
+Tried aggregator 1 time.
+LP Presolve eliminated 4047 rows and 3048 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (1.65 ticks)
+Parallel mode: deterministic, using up to 6 threads for concurrent optimization:
+ * Starting dual Simplex on 1 thread...
+ * Starting primal Simplex on 1 thread...
+
+Log for '/tmp/91d9dcf5e50c4e26b58a6f35f3f7dffd-pulp.lp' Clone_1 (V22.1.0.0) Sun Jan 15 16:52:07 2023
+
+Using steepest-edge.
+
+Total time on 6 threads = 0.00 sec. (194.98 ticks)
+
+Dual simplex solved model.
+
+
+Log for '/tmp/fbf17e3497244e9e945ab26eeadf1772-pulp.lp' Clone_1 (V22.1.0.0) Sun Jan 15 16:52:14 2023
+
+
+Log for '/tmp/fbf17e3497244e9e945ab26eeadf1772-pulp.lp' Clone_1 (V22.1.0.0) Sun Jan 15 17:49:04 2023
+
+Tried aggregator 1 time.
+LP Presolve eliminated 3673 rows and 2774 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (1.51 ticks)
+
+Log for '/tmp/fbf17e3497244e9e945ab26eeadf1772-pulp.lp' Clone_1 (V22.1.0.0) Sun Jan 15 17:49:04 2023
+
+Using steepest-edge.
+Parallel mode: deterministic, using up to 6 threads for concurrent optimization:
+ * Starting dual Simplex on 1 thread...
+ * Starting primal Simplex on 1 thread...
+
+Total time on 6 threads = 0.00 sec. (194.60 ticks)
+
+Dual simplex solved model.
+
+
+Log for '/tmp/1cf69c3d0dff4f2c9e98c6208b2a8292-pulp.lp' Clone_1 (V22.1.0.0) Sun Jan 15 22:12:55 2023
+
+Presolve time = 0.01 sec. (0.54 ticks)
+
+Dual simplex solved model.
+
+
+Log for '/tmp/9ab5034bfebc42ea92a0115b78156432-pulp.lp' Clone_1 (V22.1.0.0) Sun Jan 15 22:12:55 2023
+
+Tried aggregator 1 time.
+LP Presolve eliminated 3495 rows and 2496 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (1.37 ticks)
+
+Log for '/tmp/9ab5034bfebc42ea92a0115b78156432-pulp.lp' Clone_1 (V22.1.0.0) Sun Jan 15 22:12:55 2023
+
+Using steepest-edge.
+Parallel mode: deterministic, using up to 6 threads for concurrent optimization:
+ * Starting dual Simplex on 1 thread...
+ * Starting primal Simplex on 1 thread...
+
+Total time on 6 threads = 0.01 sec. (194.29 ticks)
+
+Dual simplex solved model.
+
+
+Log for '/tmp/9e0da9f414b945d796971c2bb68d870a-pulp.lp' Clone_1 (V22.1.0.0) Sun Jan 15 22:12:56 2023
+
+Tried aggregator 1 time.
+LP Presolve eliminated 3145 rows and 2246 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (1.23 ticks)
+Parallel mode: deterministic, using up to 6 threads for concurrent optimization:
+ * Starting dual Simplex on 1 thread...
+ * Starting primal Simplex on 1 thread...
+
+Log for '/tmp/9e0da9f414b945d796971c2bb68d870a-pulp.lp' Clone_1 (V22.1.0.0) Sun Jan 15 22:12:56 2023
+
+Using steepest-edge.
+
+Total time on 6 threads = 0.01 sec. (193.94 ticks)
+
+Dual simplex solved model.
+
+
+Log for '/tmp/4f1f31e4cb764adf938879092284fb2b-pulp.lp' Clone_1 (V22.1.0.0) Sun Jan 15 22:12:58 2023
+
+Tried aggregator 1 time.
+LP Presolve eliminated 3495 rows and 2496 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (1.37 ticks)
+Parallel mode: deterministic, using up to 6 threads for concurrent optimization:
+ * Starting dual Simplex on 1 thread...
+ * Starting primal Simplex on 1 thread...
+
+Log for '/tmp/4f1f31e4cb764adf938879092284fb2b-pulp.lp' Clone_1 (V22.1.0.0) Sun Jan 15 22:12:58 2023
+
+Using steepest-edge.
+
+Total time on 6 threads = 0.01 sec. (194.29 ticks)
+
+Dual simplex solved model.
+
+
+Log for '/tmp/79d52ef15f744823aa5ae3bfc44d1f0e-pulp.lp' Clone_1 (V22.1.0.0) Sun Jan 15 22:13:00 2023
+
+Tried aggregator 1 time.
+LP Presolve eliminated 3495 rows and 2496 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (1.37 ticks)
+
+Log for '/tmp/79d52ef15f744823aa5ae3bfc44d1f0e-pulp.lp' Clone_1 (V22.1.0.0) Sun Jan 15 22:13:00 2023
+
+Using steepest-edge.
+Parallel mode: deterministic, using up to 6 threads for concurrent optimization:
+ * Starting dual Simplex on 1 thread...
+ * Starting primal Simplex on 1 thread...
+
+Total time on 6 threads = 0.01 sec. (194.29 ticks)
+
+Dual simplex solved model.
+
+
+Log for '/tmp/f0b5e8f0ce17477aa400d9d786200f6e-pulp.lp' Clone_1 (V22.1.0.0) Sun Jan 15 22:13:01 2023
+
+Tried aggregator 1 time.
+LP Presolve eliminated 3145 rows and 2246 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (1.23 ticks)
+Parallel mode: deterministic, using up to 6 threads for concurrent optimization:
+ * Starting dual Simplex on 1 thread...
+ * Starting primal Simplex on 1 thread...
+
+Log for '/tmp/f0b5e8f0ce17477aa400d9d786200f6e-pulp.lp' Clone_1 (V22.1.0.0) Sun Jan 15 22:13:01 2023
+
+Using steepest-edge.
+
+Total time on 6 threads = 0.01 sec. (193.94 ticks)
+
+Dual simplex solved model.
+
+
+Log for '/tmp/f147887438074db78b0ea10e3ec5023d-pulp.lp' Clone_1 (V22.1.0.0) Sun Jan 15 22:13:03 2023
+
+Tried aggregator 1 time.
+LP Presolve eliminated 3145 rows and 2246 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (1.23 ticks)
+Parallel mode: deterministic, using up to 6 threads for concurrent optimization:
+ * Starting dual Simplex on 1 thread...
+ * Starting primal Simplex on 1 thread...
+
+Log for '/tmp/f147887438074db78b0ea10e3ec5023d-pulp.lp' Clone_1 (V22.1.0.0) Sun Jan 15 22:13:03 2023
+
+Using steepest-edge.
+
+Total time on 6 threads = 0.01 sec. (193.94 ticks)
+
+Dual simplex solved model.
+
+
+Log for '/tmp/27a525eda8344fa0b2bdb399be3456e5-pulp.lp' Clone_1 (V22.1.0.0) Sun Jan 15 22:13:04 2023
+
+Tried aggregator 1 time.
+LP Presolve eliminated 3495 rows and 2496 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (1.37 ticks)
+Parallel mode: deterministic, using up to 6 threads for concurrent optimization:
+ * Starting dual Simplex on 1 thread...
+ * Starting primal Simplex on 1 thread...
+
+Log for '/tmp/27a525eda8344fa0b2bdb399be3456e5-pulp.lp' Clone_1 (V22.1.0.0) Sun Jan 15 22:13:04 2023
+
+Using steepest-edge.
+
+Total time on 6 threads = 0.01 sec. (194.29 ticks)
+
+Dual simplex solved model.
+
+
+Log for '/tmp/fad3e5a3fa8c4ac7b2cc21ff89e48138-pulp.lp' Clone_1 (V22.1.0.0) Sun Jan 15 22:13:05 2023
+
+Tried aggregator 1 time.
+LP Presolve eliminated 3495 rows and 2496 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (1.37 ticks)
+
+Log for '/tmp/fad3e5a3fa8c4ac7b2cc21ff89e48138-pulp.lp' Clone_1 (V22.1.0.0) Sun Jan 15 22:13:05 2023
+
+Using steepest-edge.
+Parallel mode: deterministic, using up to 6 threads for concurrent optimization:
+ * Starting dual Simplex on 1 thread...
+ * Starting primal Simplex on 1 thread...
+
+Total time on 6 threads = 0.01 sec. (194.29 ticks)
+
+Dual simplex solved model.
+
