@@ -126,6 +126,6 @@ if __name__ == '__main__':
         exit()
 
     try:
-        main_aux(sys.argv[1])
+        main_plnecp(sys.argv[1])
     except IOError:
         print("The file does not exist, exiting", file=sys.stderr)
